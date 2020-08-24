@@ -169,8 +169,15 @@
 
         //Collision of objects
         Events.on(engine, 'collisionStart', function(event) {
-            console.log("colide");
-            var audio = new Audio('./audio/SquareS42.mp3');
+
+            // var audio = new Audio('./audio/SquareS42.mp3');
+            // audio.play();
+
+
+
+            var musicFiles = ["./audio/audioone.mp3", "./audio/audiotwo.mp3", "./audio/audiothree.mp3", "./audio/audiofour.mp3", "./audio/audiofive.mp3"];
+            var randNum = Math.floor(Math.random()*musicFiles.length)
+            var audio = new Audio(musicFiles[randNum]);
             audio.play();
         });
 
