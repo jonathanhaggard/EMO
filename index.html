@@ -170,7 +170,8 @@
         //Collision of objects
         Events.on(engine, 'collisionStart', function(event) {
             console.log("colide");
-
+            var audio = new Audio('./audio/SquareS42.mp3');
+            audio.play();
         });
 
 
