@@ -187,6 +187,14 @@
       * {
         box-sizing: border-box;
       }
+      @font-face {
+          font-family: 'radio_groteskregular';
+          src: url('fonts/radiogrotesk-regular-webfont.woff2') format('woff2'),
+               url('fonts/radiogrotesk-regular-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+
+      }
       .matter-header-outer{
         display: none;
       }
@@ -197,9 +205,12 @@
         width: 100%;
         height: 100vh;
       }
+
       body {
         margin: 0;
         padding: 0;
+        font-family: 'radio_groteskregular', sans-serif;
+        font-size: 30px;
       }
 
       .matter-js-compare-build {
@@ -222,10 +233,78 @@
         opacity: 0.5;
         background: transparent !important;
       }
+
+      .navTB{
+        height: 50px;
+        background: white;
+        color: black;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+        position: fixed;
+        top:0;
+      }
+
+      .navLR{
+        width: 50px;
+        background: white;
+        color: black;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        height: 100vh;
+        position: fixed;
+        top:0;
+      }
+      .eb{
+        bottom:0;
+        top:auto;
+      }
+      .home, .contributors{
+        z-index: 99;
+      }
+      .home p, .contributors p{
+        transform: rotate(-90deg);
+      }
+      .home{
+        border-right: 2px solid black;
+      }
+      .contributors{
+        right: 0;
+        border-left: 2px solid black;
+      }
+      .pagecontent{
+        width: 80%;
+        margin: 0 auto 20vh;
+      }
     </style>
   </head>
   <body>
+
 <canvas id="world"></canvas>
+
+  <div class="home navLR">
+    <p>Home<p>
+  </div>
+
+  <div class="menu navTB">
+    <p>Menu<p>
+  </div>
+
+  <div class="contributors navLR">
+    <p>Contributors<p>
+  </div>
+
+  <div class="eb navTB">
+    <p>Emotive Brand<p>
+  </div>
+
+  <div class="pagecontent">
     <div>
       <h1>
         Lorem ipsum dolor sit amet
@@ -299,6 +378,7 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
       </p>
 
+    </div>
 
     </div>
   </body>
