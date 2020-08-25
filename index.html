@@ -61,7 +61,7 @@
     		options: {
     			width: cannyw,
     			height: cannyh,
-    			background: 'transparent',
+    			background: '#000000',
     			wireframes: false,
     			showAngleIndicator: false
     		}
@@ -85,42 +85,65 @@
               (function(i) {
                   $.get('./svg/' + svgs[i] + '.svg').done(function(data) {
                       var vertexSets = [],
-                          color = Matter.Common.choose(['#000000']);
+                          color = Matter.Common.choose(['#ffffff']);
 
                       $(data).find('path').each(function(i, path) {
                           var points = Svg.pathToVertices(path, 10);
-                          vertexSets.push(Matter.Vertices.scale(points, scaler, scaler));
+                          vertexSets.push(Matter.Vertices.scale(points, scaler/1.2, scaler/1.2));
                       });
-                      var Thingers = Matter.Bodies.fromVertices(percentX(100/5) + i * 200, percentY(100/4) + i * 50, vertexSets, {
+
+                      Matter.World.add(world, Matter.Bodies.fromVertices(percentX(100/5) + i * 200, percentY(100/6) + i * 50, vertexSets, {
                         density: 1.04,
                         friction: 1.01,
                         frictionAir: 0.00001,
-                        restitution: 1.1,
+                        restitution: 0.4,
                           render: {
                               fillStyle: color,
                               strokeStyle: color,
                               lineWidth: 1
                           }
-                        }, true);
+                        }, true));
 
-                      Matter.World.add(world, [Thingers]);
                   });
               })(i);
           }
-
-
       }
 
+
+      var good = Matter.Bodies.rectangle(percentX(100/5), percentY(100/1.2), 300, 90, {
+        render: {
+          sprite: {
+            texture: './svg/good.svg',
+            xScale: 1,
+            yScale: 1
+          }
+        }
+      });
+
+      var friction = Matter.Bodies.rectangle(percentX(100/1.5), percentY(100/1.2), 300, 80, {
+        render: {
+          sprite: {
+            texture: './svg/friction.svg',
+            xScale: 1.2,
+            yScale: 1.2
+          }
+        }
+      });
+
+      Matter.Body.setVelocity( good, {x: 0, y: -3});
+      Matter.Body.setVelocity( friction, {x: 0, y: -3});
+      Matter.Body.scale( friction, 1.2, 1.2);
+
+      Matter.World.add(world, [friction, good]);
 
       Matter.World.add(world, [
 
         // x, y, w, h
-          Matter.Bodies.rectangle(window.innerWidth/2, -50, window.innerWidth, 100, { isStatic: true }), //top
-          Matter.Bodies.rectangle(window.innerWidth/2, window.innerHeight+50, window.innerWidth, 100, { isStatic: true }), //bottom
-          Matter.Bodies.rectangle(window.innerWidth+50, window.innerHeight/2, 100, window.innerHeight, { isStatic: true }), //right
-          Matter.Bodies.rectangle(-50, window.innerHeight/2, 100, window.innerHeight, { isStatic: true }) //left
+          Matter.Bodies.rectangle(window.innerWidth/2, 0, window.innerWidth, 100, { isStatic: true, render: {fillStyle: "#ffffff",strokeStyle:  "#ffffff",lineWidth: 1} }), //top
+          Matter.Bodies.rectangle(window.innerWidth/2, window.innerHeight, window.innerWidth, 100, { isStatic: true, render: {fillStyle: "#ffffff",strokeStyle:  "#ffffff",lineWidth: 1} }), //bottom
+          Matter.Bodies.rectangle(window.innerWidth, window.innerHeight/2, 100, window.innerHeight, { isStatic: true, render: {fillStyle: "#ffffff",strokeStyle:  "#ffffff",lineWidth: 1} }), //right
+          Matter.Bodies.rectangle(0, window.innerHeight/2, 100, window.innerHeight, { isStatic: true, render: {fillStyle: "#ffffff",strokeStyle:  "#ffffff",lineWidth: 1} }) //left
       ]);
-
 
 
     	//Make interactive
@@ -142,16 +165,16 @@
 
           // var audio = new Audio('./audio/SquareS42.mp3');
           // audio.play();
-          var musicFiles = ["./audio/audioone.mp3", "./audio/audiotwo.mp3", "./audio/audiothree.mp3", "./audio/audiofour.mp3", "./audio/audiofive.mp3"];
+          var musicFiles = ["./audio/horn/01.mp3", "./audio/horn/02.mp3", "./audio/horn/03.mp3", "./audio/horn/04.mp3", "./audio/horn/05.mp3", "./audio/horn/06.mp3", "./audio/horn/07.mp3", "./audio/horn/08.mp3", "./audio/horn/09.mp3", "./audio/horn/10.mp3"];
           var randNum = Math.floor(Math.random()*musicFiles.length)
           var audio = new Audio(musicFiles[randNum]);
           audio.play();
+
       });
 
     	//Start the engine
     	Matter.Engine.run(engine);
     	Matter.Render.run(render);
-
     });
 
 /////////NOISE
@@ -211,6 +234,72 @@
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
       </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed scelerisque elit ornare purus pulvinar, eu volutpat massa pretium. Morbi consequat pretium magna vel lobortis. Sed viverra, augue eget luctus malesuada, ante turpis tempor neque, congue egestas ipsum ligula sed dui. Pellentesque et tristique orci. Morbi eu consequat nulla. Morbi auctor consectetur ligula hendrerit efficitur. Duis semper tempus lectus, at dapibus dolor tincidunt id. Curabitur at arcu porta, congue dolor nec, interdum tellus. Aliquam lacinia velit ut nibh cursus volutpat.
+      </p>
+
+
     </div>
   </body>
 </html>
