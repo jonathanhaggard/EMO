@@ -78,6 +78,10 @@ body {
 .eb{
   bottom:0;
   top:auto;
+  box-shadow: 0px -2px 0px 0px rgba(0,0,0,1);
+}
+.menu{
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,1);
 }
 .home, .contributors{
   z-index: 99;
@@ -86,11 +90,11 @@ body {
   transform: rotate(-90deg);
 }
 .home{
-  border-right: 2px solid black;
+  box-shadow: 2px 0px 0px 0px rgba(0,0,0,1);
 }
 .contributors{
   right: 0;
-  border-left: 2px solid black;
+  box-shadow: -2px 0px 0px 0px rgba(0,0,0,1);
 }
 .pagecontent{
   width: 80%;
