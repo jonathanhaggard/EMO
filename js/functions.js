@@ -65,9 +65,9 @@ window.addEventListener('load', function() {
   //
   //                 Matter.World.add(world, Matter.Bodies.fromVertices(percentX(100/5) + i * 200, percentY(100/6) + i * 50, vertexSets, {
   //                   density: 1.04,
-  //                   friction: 1.01,
+  //                   friction: .01,
   //                   frictionAir: 0.00001,
-  //                   restitution: 0.4,
+  //                   restitution: 0.8,
   //                     render: {
   //                         fillStyle: color,
   //                         strokeStyle: color,
@@ -94,6 +94,10 @@ window.addEventListener('load', function() {
       });
 
       World.add(world, Bodies.fromVertices(percentX(25), percentY(25), vertexSets, {
+        density: 1.04,
+        friction: .01,
+        frictionAir: 0.00001,
+        restitution: 0.8,
           render: {
               fillStyle: color,
               strokeStyle: color,
@@ -112,7 +116,10 @@ window.addEventListener('load', function() {
       });
 
       World.add(world, Bodies.fromVertices(percentX(75), percentY(50), vertexSets, {
-          friction: 4,
+        density: 1.04,
+        friction: .01,
+        frictionAir: 0.00001,
+        restitution: 0.8,
           render: {
               fillStyle: color,
               strokeStyle: color,
@@ -131,6 +138,10 @@ window.addEventListener('load', function() {
       });
 
       World.add(world, Bodies.fromVertices(percentX(15), percentY(75), vertexSets, {
+        density: 1.04,
+        friction: .01,
+        frictionAir: 0.00001,
+        restitution: 0.8,
           render: {
               fillStyle: color,
               strokeStyle: color,
@@ -149,6 +160,10 @@ window.addEventListener('load', function() {
       });
 
       World.add(world, Bodies.fromVertices(percentX(50), percentY(50), vertexSets, {
+        density: 1.04,
+        friction: .01,
+        frictionAir: 0.00001,
+        restitution: 0.8,
           render: {
               fillStyle: color,
               strokeStyle: color,
@@ -167,7 +182,10 @@ window.addEventListener('load', function() {
       });
 
       World.add(world, Bodies.fromVertices(percentX(75), percentY(25), vertexSets, {
-
+        density: 1.04,
+        friction: .01,
+        frictionAir: 0.00001,
+        restitution: 0.8,
           render: {
               fillStyle: color,
               strokeStyle: color,
@@ -177,6 +195,10 @@ window.addEventListener('load', function() {
   });
 
   var good = Matter.Bodies.rectangle(percentX(25), percentY(10), percentX(28), percentX(9), {
+    density: 1.04,
+    friction: .01,
+    frictionAir: 0.00001,
+    restitution: 0.8,
     render: {
       sprite: {
         texture: './svg/good.svg',
@@ -187,6 +209,10 @@ window.addEventListener('load', function() {
   });
 
   var friction = Matter.Bodies.rectangle(percentX(75), percentY(90), percentX(28), percentX(8), {
+    density: 1.04,
+    friction: .01,
+    frictionAir: 0.00001,
+    restitution: 0.8,
     render: {
       sprite: {
         texture: './svg/friction.svg',
