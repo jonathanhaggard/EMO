@@ -108,10 +108,10 @@ window.addEventListener('load', function() {
 
       $(data).find('path').each(function(i, path) {
         var points = Svg.pathToVertices(path, 10);
-        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/12, percentX(1)/12));
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/15, percentX(1)/15));
       });
 
-      World.add(world, Bodies.fromVertices(percentX(75), percentY(75), vertexSets, {
+      World.add(world, Bodies.fromVertices(percentX(75), percentY(50), vertexSets, {
           friction: 4,
           render: {
               fillStyle: color,
@@ -127,10 +127,10 @@ window.addEventListener('load', function() {
 
       $(data).find('path').each(function(i, path) {
         var points = Svg.pathToVertices(path, 10);
-        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/20, percentX(1)/20));
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/23, percentX(1)/23));
       });
 
-      World.add(world, Bodies.fromVertices(percentX(25), percentY(75), vertexSets, {
+      World.add(world, Bodies.fromVertices(percentX(15), percentY(75), vertexSets, {
           render: {
               fillStyle: color,
               strokeStyle: color,
@@ -163,7 +163,7 @@ window.addEventListener('load', function() {
 
       $(data).find('path').each(function(i, path) {
         var points = Svg.pathToVertices(path, 10);
-        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/10, percentX(1)/10));
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/12, percentX(1)/12));
       });
 
       World.add(world, Bodies.fromVertices(percentX(75), percentY(25), vertexSets, {
@@ -186,7 +186,7 @@ window.addEventListener('load', function() {
     }
   });
 
-  var friction = Matter.Bodies.rectangle(percentX(75), percentY(90), percentX(29), percentX(8), {
+  var friction = Matter.Bodies.rectangle(percentX(75), percentY(90), percentX(28), percentX(8), {
     render: {
       sprite: {
         texture: './svg/friction.svg',
