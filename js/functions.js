@@ -43,45 +43,140 @@ window.addEventListener('load', function() {
 
 
 
-  var svgs = [
-      'enjoyment',
-      'fear',
-      'anger',
-      'sadness',
-      'disgust'
-  ];
+  // var svgs = [
+  //     'enjoyment',
+  //     'fear',
+  //     'anger',
+  //     'sadness',
+  //     'disgust'
+  // ];
+  //
+  // if (typeof $ !== 'undefined') {
+  //     for (var i = 0; i < svgs.length; i += 1) {
+  //         (function(i) {
+  //             $.get('./svg/' + svgs[i] + '.svg').done(function(data) {
+  //                 var vertexSets = [],
+  //                     color = Matter.Common.choose(['#ffffff']);
+  //
+  //                 $(data).find('path').each(function(i, path) {
+  //                     var points = Svg.pathToVertices(path, 10);
+  //                     vertexSets.push(Matter.Vertices.scale(points, scaler/1.2, scaler/1.2));
+  //                 });
+  //
+  //                 Matter.World.add(world, Matter.Bodies.fromVertices(percentX(100/5) + i * 200, percentY(100/6) + i * 50, vertexSets, {
+  //                   density: 1.04,
+  //                   friction: 1.01,
+  //                   frictionAir: 0.00001,
+  //                   restitution: 0.4,
+  //                     render: {
+  //                         fillStyle: color,
+  //                         strokeStyle: color,
+  //                         lineWidth: 1
+  //                     }
+  //                   }, true));
+  //
+  //             });
+  //         })(i);
+  //     }
+  // }
+  console.log(percentX(1)/100); //.1
+  console.log(percentX(1)/50); //.1
+  console.log(percentX(1)/20); //.5
+  console.log(percentX(1)/10); //1
+  console.log(percentX(1)/7); //1
+  $.get('./svg/enjoyment.svg').done(function(data) {
+      var vertexSets = [],
+          color = Common.choose(['#ffffff']);
 
-  if (typeof $ !== 'undefined') {
-      for (var i = 0; i < svgs.length; i += 1) {
-          (function(i) {
-              $.get('./svg/' + svgs[i] + '.svg').done(function(data) {
-                  var vertexSets = [],
-                      color = Matter.Common.choose(['#ffffff']);
+      $(data).find('path').each(function(i, path) {
+          var points = Svg.pathToVertices(path, 10);
+          vertexSets.push(Matter.Vertices.scale(points, percentX(1)/30, percentX(1)/30));
+      });
 
-                  $(data).find('path').each(function(i, path) {
-                      var points = Svg.pathToVertices(path, 10);
-                      vertexSets.push(Matter.Vertices.scale(points, scaler/1.2, scaler/1.2));
-                  });
+      World.add(world, Bodies.fromVertices(percentX(25), percentY(25), vertexSets, {
+          render: {
+              fillStyle: color,
+              strokeStyle: color,
+              lineWidth: 1
+          }
+      }, true));
+  });
 
-                  Matter.World.add(world, Matter.Bodies.fromVertices(percentX(100/5) + i * 200, percentY(100/6) + i * 50, vertexSets, {
-                    density: 1.04,
-                    friction: 1.01,
-                    frictionAir: 0.00001,
-                    restitution: 0.4,
-                      render: {
-                          fillStyle: color,
-                          strokeStyle: color,
-                          lineWidth: 1
-                      }
-                    }, true));
+  $.get('./svg/anger.svg').done(function(data) {
+      var vertexSets = [],
+          color = Common.choose(['#ffffff']);
 
-              });
-          })(i);
-      }
-  }
+      $(data).find('path').each(function(i, path) {
+        var points = Svg.pathToVertices(path, 10);
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/25, percentX(1)/25));
+      });
 
+      World.add(world, Bodies.fromVertices(percentX(75), percentY(75), vertexSets, {
+          friction: 4,
+          render: {
+              fillStyle: color,
+              strokeStyle: color,
+              lineWidth: 1
+          }
+      }, true));
+  });
 
-  var good = Matter.Bodies.rectangle(percentX(100/5), percentY(100/1.2), 300, 90, {
+  $.get('./svg/disgust.svg').done(function(data) {
+      var vertexSets = [],
+          color = Common.choose(['#ffffff']);
+
+      $(data).find('path').each(function(i, path) {
+        var points = Svg.pathToVertices(path, 10);
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/20, percentX(1)/20));
+      });
+
+      World.add(world, Bodies.fromVertices(percentX(25), percentY(75), vertexSets, {
+          render: {
+              fillStyle: color,
+              strokeStyle: color,
+              lineWidth: 1
+          }
+      }, true));
+  });
+
+  $.get('./svg/fear.svg').done(function(data) {
+      var vertexSets = [],
+          color = Common.choose(['#ffffff']);
+
+      $(data).find('path').each(function(i, path) {
+        var points = Svg.pathToVertices(path, 10);
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/10, percentX(1)/10));
+      });
+
+      World.add(world, Bodies.fromVertices(percentX(50), percentY(50), vertexSets, {
+          render: {
+              fillStyle: color,
+              strokeStyle: color,
+              lineWidth: 1
+          }
+      }, true));
+  });
+
+  $.get('./svg/sadness.svg').done(function(data) {
+      var vertexSets = [],
+          color = Common.choose(['#ffffff']);
+
+      $(data).find('path').each(function(i, path) {
+        var points = Svg.pathToVertices(path, 10);
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/7, percentX(1)/7));
+      });
+
+      World.add(world, Bodies.fromVertices(percentX(75), percentY(25), vertexSets, {
+
+          render: {
+              fillStyle: color,
+              strokeStyle: color,
+              lineWidth: 1
+          }
+      }, true));
+  });
+
+  var good = Matter.Bodies.rectangle(percentX(25), percentY(10), 300, 90, {
     render: {
       sprite: {
         texture: './svg/good.svg',
@@ -91,7 +186,7 @@ window.addEventListener('load', function() {
     }
   });
 
-  var friction = Matter.Bodies.rectangle(percentX(100/1.5), percentY(100/1.2), 300, 80, {
+  var friction = Matter.Bodies.rectangle(percentX(75), percentY(90), 300, 80, {
     render: {
       sprite: {
         texture: './svg/friction.svg',
@@ -101,8 +196,8 @@ window.addEventListener('load', function() {
     }
   });
 
-  Matter.Body.setVelocity( good, {x: 0, y: -3});
-  Matter.Body.setVelocity( friction, {x: 0, y: -3});
+  Matter.Body.setVelocity( good, {x: 0, y: 5});
+  Matter.Body.setVelocity( friction, {x: 0, y: -5});
   Matter.Body.scale( friction, 1.2, 1.2);
 
   Matter.World.add(world, [friction, good]);
@@ -136,7 +231,7 @@ window.addEventListener('load', function() {
 
       // var audio = new Audio('./audio/SquareS42.mp3');
       // audio.play();
-      var musicFiles = ["./audio/horn/01.mp3", "./audio/horn/02.mp3", "./audio/horn/03.mp3", "./audio/horn/04.mp3", "./audio/horn/05.mp3", "./audio/horn/06.mp3", "./audio/horn/07.mp3", "./audio/horn/08.mp3", "./audio/horn/09.mp3", "./audio/horn/10.mp3"];
+      var musicFiles = ["./audio/pad/01.mp3", "./audio/pad/02.mp3", "./audio/pad/03.mp3", "./audio/pad/04.mp3", "./audio/pad/05.mp3", "./audio/pad/06.mp3", "./audio/pad/07.mp3", "./audio/pad/08.mp3", "./audio/pad/09.mp3", "./audio/pad/10.mp3"];
       var randNum = Math.floor(Math.random()*musicFiles.length)
       var audio = new Audio(musicFiles[randNum]);
       audio.play();
