@@ -108,7 +108,7 @@ window.addEventListener('load', function() {
 
       $(data).find('path').each(function(i, path) {
         var points = Svg.pathToVertices(path, 10);
-        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/25, percentX(1)/25));
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/12, percentX(1)/12));
       });
 
       World.add(world, Bodies.fromVertices(percentX(75), percentY(75), vertexSets, {
@@ -145,7 +145,7 @@ window.addEventListener('load', function() {
 
       $(data).find('path').each(function(i, path) {
         var points = Svg.pathToVertices(path, 10);
-        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/10, percentX(1)/10));
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/15, percentX(1)/15));
       });
 
       World.add(world, Bodies.fromVertices(percentX(50), percentY(50), vertexSets, {
@@ -163,7 +163,7 @@ window.addEventListener('load', function() {
 
       $(data).find('path').each(function(i, path) {
         var points = Svg.pathToVertices(path, 10);
-        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/7, percentX(1)/7));
+        vertexSets.push(Matter.Vertices.scale(points, percentX(1)/10, percentX(1)/10));
       });
 
       World.add(world, Bodies.fromVertices(percentX(75), percentY(25), vertexSets, {
@@ -176,22 +176,22 @@ window.addEventListener('load', function() {
       }, true));
   });
 
-  var good = Matter.Bodies.rectangle(percentX(25), percentY(10), 300, 90, {
+  var good = Matter.Bodies.rectangle(percentX(25), percentY(10), percentX(28), percentX(9), {
     render: {
       sprite: {
         texture: './svg/good.svg',
-        xScale: 1,
-        yScale: 1
+        xScale: percentX(1)/10,
+        yScale: percentX(1)/10
       }
     }
   });
 
-  var friction = Matter.Bodies.rectangle(percentX(75), percentY(90), 300, 80, {
+  var friction = Matter.Bodies.rectangle(percentX(75), percentY(90), percentX(29), percentX(8), {
     render: {
       sprite: {
         texture: './svg/friction.svg',
-        xScale: 1.2,
-        yScale: 1.2
+        xScale: percentX(1)/9,
+        yScale: percentX(1)/9
       }
     }
   });
