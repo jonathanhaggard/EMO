@@ -1,3 +1,7 @@
+!function(t){var i=t(window);t.fn.visible=function(t,e,o){if(!(this.length<1)){var r=this.length>1?this.eq(0):this,n=r.get(0),f=i.width(),h=i.height(),o=o?o:"both",l=e===!0?n.offsetWidth*n.offsetHeight:!0;if("function"==typeof n.getBoundingClientRect){var g=n.getBoundingClientRect(),u=g.top>=0&&g.top<h,s=g.bottom>0&&g.bottom<=h,c=g.left>=0&&g.left<f,a=g.right>0&&g.right<=f,v=t?u||s:u&&s,b=t?c||a:c&&a;if("both"===o)return l&&v&&b;if("vertical"===o)return l&&v;if("horizontal"===o)return l&&b}else{var d=i.scrollTop(),p=d+h,w=i.scrollLeft(),m=w+f,y=r.offset(),z=y.top,B=z+r.height(),C=y.left,R=C+r.width(),j=t===!0?B:z,q=t===!0?z:B,H=t===!0?R:C,L=t===!0?C:R;if("both"===o)return!!l&&p>=q&&j>=d&&m>=L&&H>=w;if("vertical"===o)return!!l&&p>=q&&j>=d;if("horizontal"===o)return!!l&&m>=L&&H>=w}}}}(jQuery);
+
+
+
 window.addEventListener('load', function() {
 
   //Fetch our canvas
@@ -252,17 +256,39 @@ window.addEventListener('load', function() {
   mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
   Matter.World.add(world, mouseConstraint);
 
-
+var audio;
   Events.on(engine, 'collisionStart', function(event) {
 
+    if ($('#world').visible(true)) {
       // var audio = new Audio('./audio/SquareS42.mp3');
       // audio.play();
       var musicFiles = ["./audio/pad/01.mp3", "./audio/pad/02.mp3", "./audio/pad/03.mp3", "./audio/pad/04.mp3", "./audio/pad/05.mp3", "./audio/pad/06.mp3", "./audio/pad/07.mp3", "./audio/pad/08.mp3", "./audio/pad/09.mp3", "./audio/pad/10.mp3"];
       var randNum = Math.floor(Math.random()*musicFiles.length)
-      var audio = new Audio(musicFiles[randNum]);
+      audio = new Audio(musicFiles[randNum]);
       audio.play();
+      audio.style.display = "none"; //added to fix ios issue
+
+      audio.autoplay = true;
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.volume = 0;
+      console.log("passed");
+    }
+
+
+
+      // window.addEventListener("scroll", function() {
+      // var elementTarget = document.getElementById("world");
+      //   if (window.scrollY > (elementTarget.offsetTop + elementTarget.offsetHeight)) {
+      //
+      //   }
+      // });
+
 
   });
+
+
 
   //Start the engine
   Matter.Engine.run(engine);
